@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -10,8 +12,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       get 'spreads/spread', to: 'spreads#spread'
-      get 'spreads/all', to: 'spreads#spread_all_markets'
+      get 'spreads/all', to: 'spreads#spread_all'
       get 'spreads/alert', to: 'spreads#spread_alert'
+      get 'spreads/polling', to: 'spreads#polling'
     end
   end
   # root "posts#index"
