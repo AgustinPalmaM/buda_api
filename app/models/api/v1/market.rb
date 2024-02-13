@@ -30,6 +30,10 @@ module Api
         btc-usdc
         usdt-usdc
       ].freeze
+
+      def self.permitted?(market)
+        PERMITTED_MARKETS.include?(market)
+      end
     end
   end
 end

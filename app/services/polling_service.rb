@@ -5,8 +5,10 @@ class PollingService
 
 
   def polling(market)
+    return nil unless Api::V1::Market.permitted?(market)
+
     current_spread = SpreadService.new.find_spread(market)
-    spread_alert = find_alert(market)
+    spread_alert = find_alert(market).to_f
 
     message = set_message(current_spread, spread_alert)
 
