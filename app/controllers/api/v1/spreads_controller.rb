@@ -6,6 +6,7 @@ module Api
   module V1
     # this class manage operations to get spread value, spread all values, make a spread alert and make polling
     class SpreadsController < ApplicationController
+
       def spread
         market = params[:market]
         if validate_market?(market)

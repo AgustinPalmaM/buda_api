@@ -2,6 +2,8 @@
 
 # Make polling asking current spread vs saved alert spread for the same market
 class PollingService
+
+
   def polling(market)
     current_spread = SpreadService.new.find_spread(market)
     spread_alert = find_alert(market)

@@ -44,7 +44,7 @@ module Api
       end
 
       test 'should set a spread alert with valid params' do
-        get api_v1_spreads_alert_url(spread: 80, market: 'btc-clp')
+        get api_v1_spreads_alert_url(spread: 90, market: 'btc-clp')
         response_json = JSON.parse(response.body)
         assert_response :ok
         assert_match 'application/json', response.content_type
@@ -90,11 +90,6 @@ module Api
         assert_instance_of Hash, response_json
         assert_includes response_json.keys, 'message'
         assert_equal 'invalid parameters', response_json['message']
-      end
-
-      test 'should not make polling with invalid params' do
-
-
       end
     end
   end
