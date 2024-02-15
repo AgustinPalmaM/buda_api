@@ -71,7 +71,7 @@ PERMITTED_MARKETS = %w[
 When we call the endpoint with invalid market, we receive a hash with the next data:
 
 ```
-{ "message":	"invalid parameters" }
+{ "message": "invalid parameters" }
 
 ```
 The second endpoint is ```http://localhost:3000/api/v1/spreads/all```, here we don't need to pass any param or market because this endpoint return the spreads for all the markets present in the buda api, the response is an Array of hashes:
@@ -83,15 +83,42 @@ The second endpoint is ```http://localhost:3000/api/v1/spreads/all```, here we d
     "spread":8797.31},
   {
     "market":"btc-clp",
-    "spread":433729.0},
+    "spread":433729.0}
   {
     "market":"ltc-pen",
-    "spread":12.88},
+    "spread":12.88}
   {
     "market":"btc-cop",
     "spread":5999132.99}
   ]
 ```
+The third endpoint is ```http://localhost:3000/api/v1/spreads/alert?spread=8&market=btc-clp```, here we have to pass an spread value and a market value to set an alert with this params, the response is a hash:
+
+```
+{ "message":"alert_saved" }
+```
+
+and this action save the data into a json file called alert.json into the storage folder of the project;
+
+```
+[
+  {
+    "market": "btc-clp",
+    "alert_spread": 8.0
+  }
+]
+```
+If the alert what we are to trying to save is a new alert for a new market the action save a new alert with the params passed, but if the alert is a new value for an existing market alert, so the action replace the old value with the new one.
+If we pass invalid parameters like numbers under zero o invalid markets, we receive a response with a hash:
+
+```
+{ "message":"invalid parameters" }
+```
+
+
+
+
+
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
