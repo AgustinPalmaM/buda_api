@@ -1,6 +1,10 @@
-Buda Api
+#Buda Api
 
-This is a ruby on rails project maded to work with the Buda cryptocurrency market API, you can call ti the endpoints to get a spread for a specific market, or get all market spreads or set an alert for a specific value and market,then you can make polling to this alert to know if your alert is up or down the current spread.
+## Built with
+
+![Ruby on Rails Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Ruby_on_Rails-logo.png/220px-Ruby_on_Rails-logo.png)
+
+This is a ruby on rails project maded to work with the <a>href="https://api.buda.com/#la-api-de-buda-com">Buda cryptocurrency market API<a>, you can call ti the endpoints to get a spread for a specific market, or get all market spreads or set an alert for a specific value and market,then you can make polling to this alert to know if your alert is up or down the current spread.
 
 ## Installation
 
@@ -29,7 +33,7 @@ This object has four routes to get the data, you can run rails routes and get al
  api_v1_spreads_polling GET  /api/v1/spreads/polling(.:format) api/v1/spreads#polling
 ```
 
-All the api endpoints are for public calls, so you don't need authentication to get the result
+All the api endpoints are for public calls, so you don't need authentication to get the result, the method for the four endpoints is GET
 
 The first endpoint is ```http://localhost:3000/api/v1/spreads/spread?market=btc-clp```, here we have to pass the valid market to get the current spread, the response is a the next hash
 
