@@ -6,9 +6,9 @@ class PollingService
     return nil unless permitted?(market)
 
     current_spread = SpreadService.new.find_spread(market)
-    spread_alert = find_alert(market).to_f
+    spread_alert = find_alert(market).to_f unless find_alert(market).nil?
 
-    message = set_message(current_spread.to_f, spread_alert.to_f)
+    message = set_message(current_spread.to_f, spread_alert)
 
     { current_spread:, spread_alert:, message: }
   end

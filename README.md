@@ -72,7 +72,6 @@ When we call the endpoint with invalid market, we receive a hash with the next d
 
 ```
 { "message": "invalid parameters" }
-
 ```
 The second endpoint is ```http://localhost:3000/api/v1/spreads/all```, here we don't need to pass any param or market because this endpoint return the spreads for all the markets present in the buda api, the response is an Array of hashes:
 
@@ -114,11 +113,26 @@ If we pass invalid parameters like numbers under zero o invalid markets, we rece
 ```
 { "message":"invalid parameters" }
 ```
+The fourth endpoint is to make polling to a saved alert previously ```http://localhost:3000/api/v1/spreads/polling?market=btc-clp```, we have to pass the market where we want to make polling, so the action get the current spread and compare with the saved alert and throw a response with a hash with the current_spread, spread_alert and message:
 
+```
+{
+  "current_spread":488093.0,
+  "spread_alert":8.0,"message":
+  "current spread is greater than saved alert"
+}
+```
+If we pass an invalid market params, we receive a hash response like this:
 
+```
+{ "message":"invalid parameters" }
+```
+If we don't have an alert for the params market passed, we receive a hash with the next values:
 
-
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+```
+{
+  "current_spread":0.0,
+  "spread_alert":null,
+  "message":"there is not saved alert spread"
+}
+```
