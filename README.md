@@ -18,7 +18,7 @@ $ bundle install
 
 ## Usage
 
-This orject has four routes to get the data, you can run rails routes and get all the information:
+This object has four routes to get the data, you can run rails routes and get all the information:
 
 ```
 >>rails routes
@@ -66,6 +66,31 @@ PERMITTED_MARKETS = %w[
         btc-usdc
         usdt-usdc
       ].freeze
+```
+
+When we call the endpoint with invalid market, we receive a hash with the next data:
+
+```
+{ "message":	"invalid parameters" }
+
+```
+The second endpoint is ```http://localhost:3000/api/v1/spreads/all```, here we don't need to pass any param or market because this endpoint return the spreads for all the markets present in the buda api, the response is an Array of hashes:
+
+```
+[
+  {
+    "market":"bch-clp",
+    "spread":8797.31},
+  {
+    "market":"btc-clp",
+    "spread":433729.0},
+  {
+    "market":"ltc-pen",
+    "spread":12.88},
+  {
+    "market":"btc-cop",
+    "spread":5999132.99}
+  ]
 ```
 ## License
 
