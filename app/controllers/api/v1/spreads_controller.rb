@@ -11,7 +11,6 @@ module Api
         market = params[:market]
         if Market.permitted?(market)
           spread = SpreadService.new.find_spread(market)
-          puts spread.class
           render json: { spread: }, status: :ok
         else
           render json: { message: 'invalid parameters' }, status: :bad_request
