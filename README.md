@@ -4,7 +4,7 @@
 
 ![Ruby on Rails Logo](https://cdn.worldvectorlogo.com/logos/rails-1.svg)
 
-This is a ruby on rails project maded to work with the <ahref="https://api.buda.com/#la-api-de-buda-com">Buda cryptocurrency market API<a>, you can call ti the endpoints to get a spread for a specific market, or get all market spreads or set an alert for a specific value and market,then you can make polling to this alert to know if your alert is up or down the current spread.
+This is a ruby on rails project maded to work with the <a href="https://api.buda.com/#la-api-de-buda-com">Buda cryptocurrency market API<a>, you can call ti the endpoints to get a spread for a specific market, or get all market spreads or set an alert for a specific value and market,then you can make polling to this alert to know if your alert is up or down the current spread.
 
 ## Installation
 
