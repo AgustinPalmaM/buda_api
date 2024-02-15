@@ -16,7 +16,7 @@ class PollingService
   def find_alert(market)
     return nil unless permitted?(market)
 
-    alerts = AlertService.load_alerts
+    alerts = AlertService.new.load_alerts
     target_alert = alerts.find { |alert| alert['market'] == market }
     target_alert['alert_spread'].to_f unless target_alert.nil?
   end

@@ -8,6 +8,7 @@ class AlertServiceTest < ActiveSupport::TestCase
   setup do
     default_alert = { "market": 'btc-clp', "alert_spread": 9 }
     File.write(ALERT_PATH, JSON.dump([default_alert]))
+    @alert = AlertService.new
   end
 
   teardown do
@@ -16,8 +17,8 @@ class AlertServiceTest < ActiveSupport::TestCase
   end
 
   test 'should save new alert when passing a new market' do
-    AlertService.save_alert(80, 'btc-cop')
-    alerts = AlertService.load_alerts
+    @alert.save_alert(80, 'btc-cop')
+    alerts = @alert.load_alerts
     assert_equal 2, alerts.size
     assert_instance_of Array, alerts
     alerts.each do |alert|
@@ -30,8 +31,8 @@ class AlertServiceTest < ActiveSupport::TestCase
   end
 
   test 'should not save a new alert when passing an existing market, should rewrite alert_spread value' do
-    AlertService.save_alert(8000, 'btc-clp')
-    alerts = AlertService.load_alerts
+    @alert.save_alert(8000, 'btc-clp')
+    alerts = @alert.load_alerts
     assert_equal 1, alerts.size
     assert_instance_of Array, alerts
     alerts.each do |alert|
@@ -43,7 +44,7 @@ class AlertServiceTest < ActiveSupport::TestCase
   end
 
   test 'should load alerts when path to file alert_test.json is valid' do
-    alerts = AlertService.load_alerts
+    alerts = @alert.load_alerts
     assert_not_nil alerts
     assert_instance_of Array, alerts
     assert_equal 1, alerts.size
@@ -53,13 +54,13 @@ class AlertServiceTest < ActiveSupport::TestCase
 
   test 'should not load alerts from a nil path' do
     File.delete(ALERT_PATH)
-    alerts = AlertService.load_alerts
+    alerts = @alert.load_alerts
     assert_nil alerts
   end
 
   test 'should write alerts to an existing file' do
     alerts = [{ "market": 'btc-clp', "alert_spread": 1000 }, { "market": 'btc-ars', "alert_spread": 9000 }]
-    AlertService.write(alerts)
+    @alert.write(alerts)
     file_content = JSON.parse(File.read(ALERT_PATH))
     assert_equal 2, file_content.size
     assert_equal 'btc-clp', file_content.first['market']
@@ -71,6 +72,6 @@ class AlertServiceTest < ActiveSupport::TestCase
   test 'should not write when a valid json file does not exist' do
     File.delete(ALERT_PATH)
     alerts = [{ "market": 'btc-clp', "alert_spread": 1000 }, { "market": 'btc-ars', "alert_spread": 9000 }]
-    assert_nil AlertService.write(alerts)
+    assert_nil @alert.write(alerts)
   end
 end

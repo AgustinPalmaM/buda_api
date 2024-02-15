@@ -6,7 +6,6 @@ module Api
   module V1
     # this class manage operations to get spread value, spread all values, make a spread alert and make polling
     class SpreadsController < ApplicationController
-
       def spread
         market = params[:market]
         if Market.permitted?(market)
@@ -26,7 +25,7 @@ module Api
         spread = params[:spread].to_f
         market = params[:market]
         if spread.positive? && Market.permitted?(market)
-          AlertService.save_alert(spread, market)
+          AlertService.new.save_alert(spread, market)
           render json: { message: 'alert_saved' }, status: :ok
         else
           render json: { message: 'invalid parameters' }, status: :bad_request
@@ -42,8 +41,6 @@ module Api
           render json: { message: 'invalid parameters' }, status: :bad_request
         end
       end
-
-
     end
   end
 end

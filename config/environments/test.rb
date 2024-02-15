@@ -63,5 +63,4 @@ Rails.application.configure do
 
   # Config path for AlertService result storage in test environment
   config.alert_path = 'storage/alert_test.json'
-
 end

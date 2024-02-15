@@ -23,7 +23,7 @@ class SpreadService
     validate_markets.each do |market|
       threads << Thread.new do
         spread = find_spread(market)
-        spreads << { market: market, spread: spread }
+        spreads << { market:, spread: }
       end
     end
 
@@ -34,9 +34,9 @@ class SpreadService
 
   def call_url(url)
     return nil unless validate_url?(url)
+
     response = RestClient.get(url)
     JSON.parse(response.body)
-
   end
 
   def validate_url?(url)

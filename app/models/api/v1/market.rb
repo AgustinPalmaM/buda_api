@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # A class to keep all validate markets present in the API
     class Market
       PERMITTED_MARKETS = %w[
         btc-clp
