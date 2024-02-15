@@ -36,6 +36,37 @@ The first endpoint is ```http://localhost:3000/api/v1/spreads/spread?market=btc-
 ```
 {"spread":438305.0}
 ```
+To know the validate markets we have a model called Market where we keep an Array with all the markets
+
+```
+PERMITTED_MARKETS = %w[
+        btc-clp
+        btc-cop
+        eth-clp
+        eth-btc
+        btc-pen
+        eth-pen
+        eth-cop
+        bch-btc
+        bch-clp
+        bch-cop
+        bch-pen
+        btc-ars
+        eth-ars
+        bch-ars
+        ltc-btc
+        ltc-clp
+        ltc-cop
+        ltc-pen
+        ltc-ars
+        usdc-clp
+        usdc-cop
+        usdc-pen
+        usdc-ars
+        btc-usdc
+        usdt-usdc
+      ].freeze
+```
 ## License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
