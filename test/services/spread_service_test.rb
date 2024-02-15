@@ -36,23 +36,21 @@ class SpreadServiceTest < ActiveSupport::TestCase
     end
   end
 
-  test "should fetch a valid url" do
+  test 'should fetch a valid url' do
     market = 'btc-clp'
     base_url = SpreadService::BASE_URL
     url = "#{base_url}/#{market}/ticker"
     response = @spread_service.call_url(url)
-    
+
     assert response
     assert_not_empty response
     assert_instance_of Hash, response
-    
-    
   end
 
-  test "should noy fetch an invalid url" do
+  test 'should noy fetch an invalid url' do
     invalid_url = 'https://www.loteria.com'
     response = @spread_service.call_url(invalid_url)
-    
+
     assert_nil response
   end
 end
